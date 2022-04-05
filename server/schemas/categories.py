@@ -36,8 +36,8 @@ class CategoryInSchema(BaseCategory):
 class CategoryOutSchema(BaseCategory, IDMixIn):
     check_type: BaseTypeOutSchema
     check_required_value: str
-
     message_type: BaseTypeOutSchema
+    
 
     class Config:
         orm_mode = True
