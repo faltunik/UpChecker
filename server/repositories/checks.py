@@ -10,9 +10,11 @@ async def get_all_checks(
 ) -> List[Check]:
     return db.query(Check).limit(limit).offset(offset).all()
 
+
 async def get_checks(checks_id: int, db: Session) -> Check:
     return db.query(Check).get(checks_id)
     # why we are not using?: db.query(models.Post).filter(models.Post.id == post_id).first()
+
 
 async def create_checks(db: Session, check: CheckInSchema) -> Check:
     # created_check = Check(
