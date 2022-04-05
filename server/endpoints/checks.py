@@ -1,9 +1,12 @@
 from typing import List
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
+
+from dependices import get_db
 from schemas.checks import CheckInSchema, CheckOutSchema
 from services.checks import get_all_checks_service, get_checks_service, create_checks_service
-from dependices import get_db
+
 
 
 

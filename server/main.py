@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from endpoints.websites import websites_endpoint
 from endpoints.categories import categories_endpoint
 from endpoints.checks import checks_endpoint

@@ -1,5 +1,7 @@
 from typing import List
+
 from sqlalchemy.orm import Session
+
 from models import Check
 from schemas.checks import CheckInSchema
 
