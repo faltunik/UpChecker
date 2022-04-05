@@ -41,3 +41,5 @@ async def update_category_endpoint(category_id: int, category: CategoryUpdateSch
 async def delete_category_endpoint(category_id: int, db: Session = Depends(get_db)):
     await delete_category_service(db=db, category_id=category_id)
     return {"ok": True}
+
+
