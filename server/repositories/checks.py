@@ -1,6 +1,6 @@
 from typing import List
-from models import Check
 from sqlalchemy.orm import Session
+from models import Check
 from schemas.checks import CheckInSchema
 
 

@@ -1,7 +1,6 @@
-from typing import Optional
-from pydantic import AnyHttpUrl, BaseModel
-from .categories import CategoryOutSchema
+from pydantic import BaseModel
 from datetime import datetime
+from .categories import CategoryOutSchema
 
 
 class IdMixIn(BaseModel):
