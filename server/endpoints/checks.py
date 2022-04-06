@@ -8,8 +8,6 @@ from schemas.checks import CheckInSchema, CheckOutSchema
 from services.checks import get_all_checks_by_category_id_service, get_check_service, create_checks_service
 
 
-
-
 checks_endpoint = APIRouter(tags=["Checks"])
 
 
