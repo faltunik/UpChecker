@@ -11,15 +11,16 @@ class IdMixIn(BaseModel):
 
 class CheckBase(BaseModel):
     result: bool
+    category_id: int
 
 
 class CheckInSchema(CheckBase):
-    category_id: int
+    pass
 
 
 class CheckOutSchema(IdMixIn, CheckBase):
     processed_at: datetime
-    category_id: int
+    
     category: CategoryOutSchema
 
     class Config:

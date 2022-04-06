@@ -6,23 +6,20 @@ from models import Check
 from schemas.checks import CheckInSchema
 
 
-async def get_all_checks(
+async def get_all_checks_by_category_id(
     db: Session,
+    category_id: int,
     limit: int = 15, offset: int = 0
 ) -> List[Check]:
-    return db.query(Check).limit(limit).offset(offset).all()
+    return db.query(Check).filter(category_id= category_id).limit(limit).offset(offset).all()
 
 
-async def get_checks(checks_id: int, db: Session) -> Check:
-    return db.query(Check).get(checks_id)
+async def get_check( check_id: int, db: Session) -> Check:
+    return db.query(Check).get( check_id)
     # why we are not using?: db.query(models.Post).filter(models.Post.id == post_id).first()
 
 
 async def create_checks(db: Session, check: CheckInSchema) -> Check:
-    # created_check = Check(
-    #     result = check.result,
-    #     category = check.category_id,
-    # )
     created_check = Check(
         **check.dict()
     )
