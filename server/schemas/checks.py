@@ -19,7 +19,7 @@ class CheckInSchema(CheckBase):
 
 class CheckOutSchema(IdMixIn, CheckBase):
     processed_at: datetime
-    
+
     category: CategoryOutSchema
 
     class Config:

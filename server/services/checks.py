@@ -12,14 +12,14 @@ async def get_all_checks_by_category_id_service(
     category_id: int,
     limit: int = 15, offset: int = 0
 ) -> List[CheckOutSchema]:
-    checks = await get_all_checks_by_category_id(db=db, category_id = category_id, limit=limit, offset=offset)
+    checks = await get_all_checks_by_category_id(db=db, category_id=category_id, limit=limit, offset=offset)
     return [CheckOutSchema.from_orm(i) for i in checks]
 
 
 async def get_check_service(
-         check_id: int,
+    check_id: int,
         db: Session) -> CheckOutSchema:
-    check = await get_check( check_id= check_id, db=db)
+    check = await get_check(check_id=check_id, db=db)
     if check is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Check not found")
