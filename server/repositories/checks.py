@@ -14,12 +14,12 @@ async def get_all_checks_by_category_id(
     return db.query(Check).filter(category_id= category_id).limit(limit).offset(offset).all()
 
 
-async def get_check( check_id: int, db: Session) -> Check:
+async def get_check_by_category_id( check_id: int, db: Session) -> Check:
     return db.query(Check).get( check_id)
     # why we are not using?: db.query(models.Post).filter(models.Post.id == post_id).first()
 
 
-async def create_checks(db: Session, check: CheckInSchema) -> Check:
+async def create_check_by_category_ids(db: Session, check: CheckInSchema) -> Check:
     created_check = Check(
         **check.dict()
     )

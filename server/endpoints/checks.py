@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from dependices import get_db
 from schemas.checks import CheckInSchema, CheckOutSchema
-from services.checks import get_all_checks_by_category_id_service, get_check_service, create_checks_service
+from services.checks import get_all_checks_by_category_id_service, get_check_by_category_id_service, create_check_by_category_ids_service
 
 
 checks_endpoint = APIRouter(tags=["Checks"])
@@ -17,13 +17,13 @@ async def get_all_checks_by_category_id_endpoint(category_id: int, db: Session =
 
 
 @checks_endpoint.get("/{check_id}", response_model=CheckOutSchema)
-async def get_check_endpoint(
+async def get_check_by_category_id_endpoint(
     check_id: int,
     db: Session = Depends(get_db)
 ) -> CheckOutSchema:
-    return await get_check_service(check_id=check_id, db=db)
+    return await get_check_by_category_id_service(check_id=check_id, db=db)
 
 
 @checks_endpoint.post("/", response_model=CheckOutSchema, status_code=status.HTTP_201_CREATED)
-async def create_checks_endpoint(check: CheckInSchema, db: Session = Depends(get_db)) -> CheckOutSchema:
-    return await create_checks_service(db=db, check=check)
+async def create_check_by_category_ids_endpoint(check: CheckInSchema, db: Session = Depends(get_db)) -> CheckOutSchema:
+    return await create_check_by_category_ids_service(db=db, check=check)

@@ -3,7 +3,7 @@ from typing import List
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from repositories.checks import get_all_checks_by_category_id, get_check, create_checks
+from repositories.checks import get_all_checks_by_category_id, get_check_by_category_id, create_check_by_category_ids
 from schemas.checks import CheckInSchema, CheckOutSchema
 
 
@@ -16,21 +16,15 @@ async def get_all_checks_by_category_id_service(
     return [CheckOutSchema.from_orm(i) for i in checks]
 
 
-async def get_check_service(
+async def get_check_by_category_id_service(
     check_id: int,
         db: Session) -> CheckOutSchema:
-    check = await get_check(check_id=check_id, db=db)
+    check = await get_check_by_category_id(check_id=check_id, db=db)
     if check is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Check not found")
-    return CheckOutSchema(
-        id=check.id,
-        result=check.result,
-        processed_at=check.processed_at,
-        category_id=check.category_id,
-        category=check.category
-    )
+    return CheckOutSchema.from_orm(await get_check_by_category_id(check_id=check_id, db=db))
 
 
-async def create_checks_service(db: Session, check: CheckInSchema) -> CheckOutSchema:
-    return CheckOutSchema.from_orm(await create_checks(db=db, check=check))
+async def create_check_by_category_ids_service(db: Session, check: CheckInSchema) -> CheckOutSchema:
+    return CheckOutSchema.from_orm(await create_check_by_category_ids(db=db, check=check))
