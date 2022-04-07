@@ -11,11 +11,10 @@ class IdMixIn(BaseModel):
 
 class CheckBase(BaseModel):
     result: bool
-    category_id: int
 
 
 class CheckInSchema(CheckBase):
-    pass
+    category_id: int
 
 
 class CheckOutSchema(IdMixIn, CheckBase):
